@@ -18,8 +18,8 @@ const create = async (name, quantity) => {
 };
 
 const getByName = async (name) => {
-  const [rows] = await connection.execute('SELETC * FROM products WHERE name = ?', [name]);
-  return rows[0];
+  const [rows] = await connection.execute('SELECT * FROM products WHERE name = ?', [name]);
+  return rows;
 };
 
 const getAll = async () => {
