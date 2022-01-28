@@ -17,7 +17,11 @@ const productsByName = async (name) => {
 
 const productsById = async (id) => {
   const byId = await productModels.getById(id);
-  console.log(byId);
+  return byId;
+};
+
+const updateById = async (id, name, quantity) => {
+  const byId = await productModels.updateProducts(id, name, quantity);
   return byId;
 };
 
@@ -26,4 +30,5 @@ module.exports = {
   getAll,
   productsByName,
   productsById,
+  updateById,
 };
