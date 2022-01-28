@@ -18,7 +18,15 @@ const create = async (name, quantity) => {
 };
 
 const getByName = async (name) => {
-  const [rows] = await connection.execute('SELECT * FROM products WHERE name = ?', [name]);
+  const [rows] = await connection.execute(
+    'SELECT * FROM products WHERE name = ?',
+    [name],
+  );
+  return rows;
+};
+
+const getById = async (id) => {
+  const [rows] = await connection.execute('SELECT * FROM products WHERE id = ?', [id]);
   return rows;
 };
 
@@ -30,5 +38,6 @@ const getAll = async () => {
 module.exports = {
   create,
   getByName,
+  getById,
   getAll,
 };

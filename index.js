@@ -8,13 +8,17 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.post('/products', validation.byName,
-  validation.byQuantity,
-  validation.findName,
-  validation.length,
-  validation.quantityIsInteger,
-  controller.createProduct)
-.get(controller.byName);
+app.route('/products')
+  .post(validation.byName,
+    validation.byQuantity,
+    validation.findName,
+    validation.length,
+    validation.quantityIsInteger,
+    controller.createProduct)
+  .get(controller.getAllProducts);
+
+app.route('/products/:id')
+  .get(controller.byId);
 
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (_request, response) => {
