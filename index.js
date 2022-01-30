@@ -24,6 +24,10 @@ app.route('/products/:id')
     validation.inputValues,
     validation.existId,
     controller.updateById,
+  )
+  .delete(
+    validation.existId,
+    controller.deleteById,
   );
 
 // não remova esse endpoint, e para o avaliador funcionar
