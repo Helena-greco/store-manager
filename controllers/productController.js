@@ -32,12 +32,8 @@ const updateById = async (req, res) => {
   const { id } = req.params;
   const { name, quantity } = req.body;
   await productService.updateById(id, name, quantity);
-  const updateProduct = {
-    id: Number(id),
-    name,
-    quantity,
-  };
-  return res.status(200).json(updateProduct);
+  const [updatedProduct] = productService.productsById(id);
+  return res.status(200).json(updatedProduct);
 };
 
 module.exports = {
