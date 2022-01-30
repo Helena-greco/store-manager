@@ -1,6 +1,6 @@
 // https://nodejs.org/dist/latest-v8.x/docs/api/process.html
-require('dotenv').config();
 const mysql = require('mysql2/promise');
+require('dotenv').config();
 
 const connection = mysql.createPool({
   host: process.env.MYSQL_HOST,
@@ -9,4 +9,4 @@ const connection = mysql.createPool({
   database: 'StoreManager',
 });
 
-    module.exports = connection;
+module.exports = connection;

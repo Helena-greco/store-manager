@@ -22,7 +22,7 @@ app.route('/products/:id')
   .put(
     validation.requiredValues,
     validation.inputValues,
-    validation.updateId,
+    validation.existId,
     controller.updateById,
   );
 

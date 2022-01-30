@@ -3,11 +3,11 @@ const productService = require('../services/productService');
 const requiredValues = (req, res, next) => {
   const { name, quantity } = req.body;
 
-  if (!name) {
+  if (name === undefined || name === null) {
     res.status(400).json({ message: '"name" is required' });
     return;
   }
-  if (!quantity && quantity !== 0) {
+  if (quantity === undefined || quantity === null) {
     res.status(400).json({ message: '"quantity" is required' });
     return;
   }
@@ -42,6 +42,18 @@ const sameName = async (req, res, next) => {
   next();
 };
 
+const existId = async (req, res, next) => {
+  const { id } = req.params;
+  if (id === undefined || id === null) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
+  const [productsId] = await productService.productsById(id);
+  if (productsId === undefined || productsId === null) {
+    return res.status(404).json({ message: 'Product not found' });
+  }
+  next();
+};
+
 const updateId = async (req, res, next) => {
   const { id } = req.params;
   const product = await productService.updateById(id);
@@ -53,5 +65,6 @@ module.exports = {
   requiredValues,
   inputValues,
   sameName,
+  existId,
   updateId,
 }; 
