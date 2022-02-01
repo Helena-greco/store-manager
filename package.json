@@ -10,6 +10,9 @@
     "debug": "nodemon index.js",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx"
   },
+  "jest": {
+    "testTimeout": 50000
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tryber/sd-02-project-store-manager.git"

@@ -2,7 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const controller = require('./controllers/productController');
+const saleController = require('./controllers/salesController');
 const validation = require('./middlewares/validation');
+const saleValidation = require('./middlewares/saleValidation');
 
 const app = express();
 
@@ -28,6 +30,12 @@ app.route('/products/:id')
   .delete(
     validation.existId,
     controller.deleteById,
+  );
+
+app.route('/sales')
+  .post(
+    saleValidation.required,
+    saleController.createSaleProduct,
   );
 
 // não remova esse endpoint, e para o avaliador funcionar
