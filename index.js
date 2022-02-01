@@ -2,9 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const controller = require('./controllers/productController');
-const saleController = require('./controllers/salesController');
 const validation = require('./middlewares/validation');
 const saleValidation = require('./middlewares/saleValidation');
+const saleController = require('./controllers/salesController');
 
 const app = express();
 

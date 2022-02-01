@@ -2,13 +2,11 @@ const salesModels = require('../models/salesModels');
 
 const createSaleId = async () => {
   const id = await salesModels.salesId();
-  console.log(id);
   return id;
 };
 
-const createSaleProducts = async (saleId, productId, quantity) => {
-  const sale = await salesModels.createSaleProducts(saleId, productId, quantity);
-  console.log(sale);
+const createSaleProducts = async (id, productId, quantity) => {
+  const sale = await salesModels.createSaleProducts(id, productId, quantity);
   return sale;
 };
 

@@ -11,7 +11,7 @@
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx"
   },
   "jest": {
-    "testTimeout": 50000
+    "testTimeout": 30000
   },
   "repository": {
     "type": "git",

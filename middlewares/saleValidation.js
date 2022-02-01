@@ -16,6 +16,7 @@ const required = (req, res) => {
       { message: '"quantity" must be a number larger than or equal to 1' },
     );
   }
+  console.log(sales);
 };
 
 module.exports = {
