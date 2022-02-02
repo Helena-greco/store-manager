@@ -6,6 +6,7 @@ const salesId = async () => {
 };
 
 const createSaleProducts = async (id, productId, quantity) => {
+  console.log(id, productId, quantity);
   const [productSale] = await connection.execute(
     'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);', 
     [id, productId, quantity],

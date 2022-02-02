@@ -1,4 +1,4 @@
-const required = (req, res) => {
+const required = (req, res, next) => {
   const sales = req.body;
   const productId = sales.filter((item) => item.product_id === undefined);
   const quantity = sales.filter((item) => item.quantity === undefined);
@@ -16,7 +16,7 @@ const required = (req, res) => {
       { message: '"quantity" must be a number larger than or equal to 1' },
     );
   }
-  console.log(sales);
+  next();
 };
 
 module.exports = {
