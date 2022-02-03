@@ -4,7 +4,7 @@ const connection = require('../../models/connection');
 const productModels = require('../../models/productModels');
 const salesModels = require('../../models/salesModels');
 
-describe('Na rota "/products"', () => {
+describe('3. Na rota "/products" na camada Models', () => {
   describe('Testa se um produto é inserido com sucesso', () => {
     const product = {
       name: 'banana',
@@ -111,7 +111,7 @@ describe('Na rota "/products"', () => {
   });
 });
 
-describe('Na rota "/sales"', () => {
+describe('4. Na rota "/sales" na camada Models', () => {
   const id = { insertId: 1 };
   before(async () => {
     const execute = [id, []]; 
