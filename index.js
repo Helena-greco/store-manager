@@ -37,7 +37,13 @@ app.route('/sales')
     saleValidation.required,
     saleController.createSaleProduct,
   );
-
+  
+app.route('/sales/:id')
+  .get(saleController.getSalesById);
+  
+app.route('/sales')
+  .get(saleController.getAllSales);
+  
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();

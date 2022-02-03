@@ -1,45 +1,69 @@
 const connection = require('./connection');
 
 const create = async (name, quantity) => {
-  const [rows] = await connection.execute(
-    'INSERT INTO products (name, quantity ) VALUES (?,?);', 
-    [name, quantity],
-  );
-
-  return {
-    id: rows.insertId,
-    name,
-    quantity,
-  };
+  try {
+    const [rows] = await connection.execute(
+      'INSERT INTO products (name, quantity ) VALUES (?,?);', 
+      [name, quantity],
+    );
+  
+    return {
+      id: rows.insertId,
+      name,
+      quantity,
+    };
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const getByName = async (name) => {
-  const [rows] = await connection.execute(
-    'SELECT * FROM products WHERE name = ?;',
-    [name],
-  );
-  return rows;
+  try {
+    const [rows] = await connection.execute(
+      'SELECT * FROM products WHERE name = ?;',
+      [name],
+    );
+    return rows;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const getById = async (id) => {
-  const [rows] = await connection.execute('SELECT * FROM products WHERE id = ?;', [id]);
-  return rows;
+  try {
+    const [rows] = await connection.execute('SELECT * FROM products WHERE id = ?;', [id]);
+    return rows;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const getAll = async () => {
-  const [rows] = await connection.execute('SELECT * FROM products;');
-  return rows;
+  try {
+    const [rows] = await connection.execute('SELECT * FROM products;');
+    return rows;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const updateProducts = async (id, name, quantity) => {
-  const [rows] = await connection.execute(
-    'UPDATE products SET name = ?, quantity = ? WHERE id = ?;', [name, quantity, id],
-  );
-  return rows;
+  try {
+    const [rows] = await connection.execute(
+      'UPDATE products SET name = ?, quantity = ? WHERE id = ?;', [name, quantity, id],
+    );
+    return rows;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const deleteProduct = async (id) => {
-  await connection.execute('DELETE FROM products WHERE id = ?;', [id]);
+  try {
+    await connection.execute('DELETE FROM products WHERE id = ?;', [id]);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = {

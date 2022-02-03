@@ -1,17 +1,17 @@
 const salesService = require('../services/salesService');
 
-// Promise.all antes do map(), dica do Sérgio Rodrigues no slack
-/** Ref: https://flaviocopes.com/javascript-async-await-array-map/ */
-
 const createSaleProduct = async (req, res) => {
   const sales = req.body;
   const id = await salesService.createSaleId();
 
-  const productSale = Promise.all(sales.map(async (obj) => {
+  // ajuda do Nataniel Santos no Slack sobre o Promise.all
+  const productSale = sales.map(async (obj) => {
     const { product_id, quantity } = obj;
     const sale = await salesService.createSaleProducts(id.insertId, product_id, quantity);
     return sale;
-  }));
+  });
+
+  await Promise.all(productSale);
 
   if (!productSale) {
     return res.status(404).send({ message: 'Product not found' });
@@ -25,6 +25,22 @@ const createSaleProduct = async (req, res) => {
   );
 };
 
+const getAllSales = async (_req, res) => {
+  const getSales = await salesService.getAllSales();
+  return res.status(200).json(getSales);
+};
+
+const getSalesById = async (req, res) => {
+  const { id } = req.params;
+  const sale = await salesService.getSalesById(id);
+  if (!sale.length) {
+    return res.status(404).send({ message: 'Sale not found' });
+  }
+  return res.status(200).json(sale);
+};
+
 module.exports = {
   createSaleProduct,
+  getAllSales,
+  getSalesById,
 };
