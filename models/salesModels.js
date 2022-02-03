@@ -24,7 +24,7 @@ const createSaleProducts = async (id, productId, quantity) => {
 const getAllSales = async () => {
   try {
     const [rows] = await connection.execute(
-      `SELECT p.sale_id, s.date, p.product_id, p.quantity FROM sales s
+      `SELECT p.sale_id AS saleId, s.date, p.product_id, p.quantity FROM sales s
       INNER JOIN sales_products p ON s.id = p.sale_id;`,
     );
     return rows;
