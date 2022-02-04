@@ -14,7 +14,7 @@ describe('1. Testa funções na camada Controller do Products', () => {
     before(() => {
       request.body = {
         name: "banana",
-        quantity: "6"
+        quantity: 6,
       };
   
       response.status = sinon.stub().returns(response);
@@ -69,74 +69,9 @@ describe('1. Testa funções na camada Controller do Products', () => {
   
   });
   
-  describe('Ao chamar o deleteById', () => {
-    const response = {};
-    const request = {};
-  
-    before(() => {
-      request.params = { id: 1 }
-      request.body = {
-        name: "banana",
-        quantity: "6"
-      };
-  
-      response.status = sinon.stub().returns(response);
-      response.json = sinon.stub().returns();
-      sinon.stub(productService, 'deleteById').resolves(true);
-    });
-  
-    after(() => {
-      productService.deleteById.restore();
-    });
-  
-    it('será validado se chamar o status com o código 200', async () => {
-      await productController.deleteById(request, response);
-  
-      expect(response.status.calledWith(200)).to.be.equal(true);
-    });
-  
-    it('será validado se chamar o json', async () => {
-      await productController.deleteById(request, response);
-  
-      expect(response.json.called).to.be.equal(true);
-    });
-  });
 });
 describe('2. Testa funções na camada Controller do Sales', () => {
-  describe('Ao chamar o createSaleProducts', () => {
-    const response = {};
-    const request = {};
-  
-    before(() => {
-      request.body = [{
-        product_id: 1,
-        quantity: 6
-      }];
-  
-      response.status = sinon.stub().returns(response);
-      response.json = sinon.stub().returns();
-      sinon.stub(saleService, 'createSaleProducts').resolves(true);
-    });
-  
-    after(() => {
-      saleService.createSaleProducts.restore();
-    });
-  
-    it('será validado se chamar o status com o código 201', async () => {
-      await saleController.createSaleProduct(request, response);
-  
-      expect(response.status.calledWith(201)).to.be.equal(true);
-    });
-  
-    it('será validado se chamar o json', async () => {
-      await saleController.createSaleProduct(request, response);
-  
-      expect(response.json.called).to.be.equal(true);
-    });
-  
-  });
-  
-  describe('Ao chamar o getAllSales', () => {
+  describe('ao chamar o getAllSales', () => {
     const response = {};
     const request = {};
   

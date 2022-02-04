@@ -12,7 +12,7 @@ describe('5. Na rota "/products" na camada Services', () => {
     };
   
     before(async () => {
-      const execute = [{ insertId: 1 }]; // retorno esperado nesse teste
+      const execute = [{ insertId: 1 }];
   
       sinon.stub(connection, 'execute').resolves(execute);
     });
